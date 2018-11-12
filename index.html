@@ -6,51 +6,90 @@
     <body>
         <script>
 
-            var computer = ["rock","paper","scissors"]
-            var computerHand = computer[Math.floor(Math.random()*computer.length)]
+            const computer = ["rock","paper","scissors"]
+            let computerSelection
+            let playerSelection
+            let rounds = 0 //max of 5 rounds in a game
+            let playerScore = 0
+            let computerScore = 0
 
+        
             function computerPlay() {
-                return computerHand
+                computerSelection = computer[Math.floor(Math.random()*computer.length)]
+                return computerSelection
             }
             function playerPlay() {
-                var playerHand = prompt("Rock, Paper, Scissors")
-                return playerHand
+                playerSelection = prompt("Rock, Paper, Scissors").toLowerCase()
+                return playerSelection
             }
-            function game(computerHand,playerHand) {
+            function playRound(computerSelection, playerSelection) {
 
-                if (computerHand == "rock" && playerHand == "rock") {
+                if (computerSelection == "rock" && playerSelection == "rock") {
+                    rounds--
                     return "It's a tie!!"
                 }
-                else if (computerHand == "rock" && playerHand == "paper") {
+                else if (computerSelection == "rock" && playerSelection == "paper") {
+                    playerScore++
                     return "you win!"
                 }
-                else if (computerHand == "rock" && playerHand == "scissors") {
+                else if (computerSelection == "rock" && playerSelection == "scissors") {
+                    computerScore++
                     return "you lose!"
                 }
-                else if (computerHand == "paper" && playerHand == "rock") {
+                else if (computerSelection == "paper" && playerSelection == "rock") {
+                    computerScore++
                     return "you lost!"
                 }
-                else if (computerHand == "paper" && playerHand == "paper") {
+                else if (computerSelection == "paper" && playerSelection == "paper") {
+                    rounds--
                     return "It's a tie!"
                 }
-                else if (computerHand == "paper" && playerHand == "scissors") {
+                else if (computerSelection == "paper" && playerSelection == "scissors") {
+                    playerScore++
                     return "You win!"
                 }
-                else if (computerHand == "scissors" && playerHand == "rock") {
+                else if (computerSelection == "scissors" && playerSelection == "rock") {
+                    playerScore++
                     return "You win!!"
                 }
-                else if (computerHand == "scissors" && playerHand == "paper") {
+                else if (computerSelection == "scissors" && playerSelection == "paper") {
+                    computerScore++
                     return "you lose!!"
                 }
-                else if (computerHand == "scissors" && playerHand == "scissors") {
+                else if (computerSelection == "scissors" && playerSelection == "scissors") {
+                    rounds--
                     return "It's a tie!"
                 }
+
             }
-            computerPlay()
-            playerPlay()
-            game(computerHand,playerHand)
-            
-            console.log(game)
+            function game() {
+
+                // if (rounds == 5) {
+
+                //     gamePrompt = prompt("Do you want to play a new game? y/n").toLowerCase()
+                //     if (gamePrompt == "y") {
+                //         rounds = 0
+                //     }
+                //     else {
+                //         return "then piss off lad"
+                //     }
+                // }
+                while (rounds < 5) {
+                    playerPlay()
+                    computerPlay()
+                    console.log("You played "+playerSelection+".")
+                    console.log("The computer played "+computerSelection+".")
+                    console.log(playRound(computerSelection,playerSelection))
+                    console.log("Score: "+playerScore+" - "+computerScore) 
+                    rounds++ 
+                }
+                
+                
+
+            }
+
+
+            game()
         </script>    
     </body>
 </html>
