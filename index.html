@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+
+            var computer = ["rock","paper","scissors"]
+            var computerHand = computer[Math.floor(Math.random()*computer.length)]
+
+            function computerPlay() {
+                return computerHand
+            }
+            function playerPlay() {
+                var playerHand = prompt("Rock, Paper, Scissors")
+                return playerHand
+            }
+            function game(computerHand,playerHand) {
+
+                if (computerHand == "rock" && playerHand == "rock") {
+                    return "It's a tie!!"
+                }
+                else if (computerHand == "rock" && playerHand == "paper") {
+                    return "you win!"
+                }
+                else if (computerHand == "rock" && playerHand == "scissors") {
+                    return "you lose!"
+                }
+                else if (computerHand == "paper" && playerHand == "rock") {
+                    return "you lost!"
+                }
+                else if (computerHand == "paper" && playerHand == "paper") {
+                    return "It's a tie!"
+                }
+                else if (computerHand == "paper" && playerHand == "scissors") {
+                    return "You win!"
+                }
+                else if (computerHand == "scissors" && playerHand == "rock") {
+                    return "You win!!"
+                }
+                else if (computerHand == "scissors" && playerHand == "paper") {
+                    return "you lose!!"
+                }
+                else if (computerHand == "scissors" && playerHand == "scissors") {
+                    return "It's a tie!"
+                }
+            }
+            computerPlay()
+            playerPlay()
+            game(computerHand,playerHand)
+            
+            console.log(game)
+        </script>    
+    </body>
+</html>
