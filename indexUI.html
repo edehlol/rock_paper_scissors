@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div style="text-align: center">
+                <h1>You:</h1>
+                <h2 id="myScore" style=></h2>
+                <h1>Computer:</h1>
+                <h2 id="pcScore"></h2>
+        
+                <p id="player"></p>
+                <p id="computer"></p>
+        </div>
+
+        <div style="text-align: center">
+        <button id="rock">rock</button>
+        <button id="paper">paper</button>
+        <button id="scissors">scissors</button>
+        </div>
+        <p id="announce"></p>
+
+
+        <script>
+
+            const computer = ["rock","paper","scissors"]
+            let computerSelection
+            let playerSelection
+            let rounds = 0 //max of 5 rounds in a game
+            let playerScore = 0
+            let computerScore = 0
+
+            const buttons = document.querySelectorAll("button") 
+            const player = document.querySelector("#player")
+            const myScore = document.querySelector("#myScore")
+            const computerResult = document.querySelector("#pcScore")
+            let announce = document.querySelector("#announce")
+            
+            buttons.forEach((button) => {
+                button.addEventListener("click",function() {
+                    
+                    console.log(button.id)
+                    playerSelection = button.id
+                    computerSelection = computer[Math.floor(Math.random()*computer.length)]
+                    player.textContent = "You picked: "+playerSelection
+                    computerResult.textContent = "The computer picked: "+computerSelection
+
+                    playRound(computerSelection,playerSelection)
+                    myScore.textContent = playerScore
+                    computerResult.textContent = computerScore
+                    console.log(playerScore)
+                    console.log(computerScore)
+                })
+            })
+            
+
+            
+
+
+
+            // function computerPlay() {
+            //     computerSelection = 
+            //     return computerSelection
+            // }
+            // function playerPlay(buttons) {
+            //     playerSelection = button.id
+            //     console.log(button.id)
+            //     return playerSelection
+            // }
+            function playRound(computerSelection, playerSelection) {
+
+                // compare hands
+                if (computerSelection == "rock" && playerSelection == "rock") {
+                    rounds--
+                    announce.textContent =  "It's a tie!!"
+                }
+                else if (computerSelection == "rock" && playerSelection == "paper") {
+                    playerScore++
+                    announce.textContent = "you win!"
+                }
+                else if (computerSelection == "rock" && playerSelection == "scissors") {
+                    computerScore++
+                    announce.textContent = "you lose!"
+                }
+                else if (computerSelection == "paper" && playerSelection == "rock") {
+                    computerScore++
+                    announce.textContent = "you lost!"
+                }
+                else if (computerSelection == "paper" && playerSelection == "paper") {
+                    rounds--
+                    announce.textContent = "It's a tie!"
+                }
+                else if (computerSelection == "paper" && playerSelection == "scissors") {
+                    playerScore++
+                    announce.textContent = "You win!"
+                }
+                else if (computerSelection == "scissors" && playerSelection == "rock") {
+                    playerScore++
+                    announce.textContent = "You win!!"
+                }
+                else if (computerSelection == "scissors" && playerSelection == "paper") {
+                    computerScore++
+                    announce.textContent = "you lose!!"
+                }
+                else if (computerSelection == "scissors" && playerSelection == "scissors") {
+                    rounds--
+                    announce.textContent = "It's a tie!"
+                }
+                // track score (limited at 5)
+                if (playerScore == 5) {
+                    announce.textContent = "You won the game!"
+                }
+                else if (computerScore == 5) {
+                    announce.textContent = "You lost the game!"
+                }
+
+            }
+            // function game() {
+
+            //     while (rounds < 5) {
+            //         playerPlay()
+            //         computerPlay()
+            //         console.log("You played "+playerSelection+".")
+            //         console.log("The computer played "+computerSelection+".")
+            //         console.log(playRound(computerSelection,playerSelection))
+            //         console.log("Score: "+playerScore+" - "+computerScore) 
+            //         rounds++ 
+            //     }
+                
+                
+
+            // }
+
+
+            // game()
+        </script>    
+    </body>
+</html>
